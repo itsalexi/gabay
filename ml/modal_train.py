@@ -18,8 +18,8 @@ models = modal.Volume.from_name("gabay-models", create_if_missing=True)
 
 @app.function(gpu=os.environ.get("GABAY_GPU", "H100"), image=image, volumes={"/out": models}, timeout=3 * 60 * 60)
 def train(version: str, data: str, epochs: int, base: str = "convaiinnovations/laya", head: int = 192) -> str:
-    script = ("set -e; cd /root && git clone -q https://github.com/EZA2405/app_builders_hack && "
-              f"WORKDIR=/out BASE={base} HEAD_MAX_LEN={head} bash app_builders_hack/ml/runpod_train.sh {version} {data} {epochs}")
+    script = ("set -e; cd /root && git clone -q https://github.com/itsalexi/gabay && "
+              f"WORKDIR=/out BASE={base} HEAD_MAX_LEN={head} bash gabay/ml/runpod_train.sh {version} {data} {epochs}")
     subprocess.run(["bash", "-c", script], check=True)
     models.commit()
     return open(f"/out/results-{version}.txt").read()

@@ -227,7 +227,7 @@ Research date: Oct 9, 2026. Public pages only (read-only). Nothing was posted, s
 
 **Ground rules:**
 - **[I]** Rehearse each exact phrase 10× on the demo Mac and keep it only if it passes every time (POSITIONING §6).
-- Several goals below are **held-out test goals**. Demoing them is fine. Don't change the model or training data because of how they do in rehearsal (AGENTS.md rule 4).
+- Several goals below are **held-out test goals**. Demoing them is fine. Don't change the model or training data because of how they do in rehearsal. Held-out goals never shape the model.
 - Paths are written for macOS 26. Verify on the demo machine.
 
 | # | Say it like Lola (EN / Taglish) | App or site | Expected click path | Why it scores | Readiness and risk |

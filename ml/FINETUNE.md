@@ -12,7 +12,7 @@
 ## 1. Setup (~5 min)
 
 ```bash
-git clone https://github.com/EZA2405/app_builders_hack && cd app_builders_hack   # or git pull
+git clone https://github.com/itsalexi/gabay && cd gabay   # or git pull
 python3 -m venv .venv && source .venv/bin/activate        # Python 3.10+
 pip install "laya[serve]"                                  # pulls torch; on NVIDIA make sure torch has CUDA
 python -c "import laya, torch; print(laya.__version__, torch.cuda.is_available(), torch.backends.mps.is_available())"

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Train + benchmark a Laya variant on any CUDA box (RunPod / Vast.ai / Lambda).
 # Usage (in the pod's Jupyter terminal):
-#   curl -sL https://raw.githubusercontent.com/EZA2405/app_builders_hack/main/ml/runpod_train.sh | bash -s -- v4e5 data/v4/train.jsonl 5
+#   curl -sL https://raw.githubusercontent.com/itsalexi/gabay/main/ml/runpod_train.sh | bash -s -- v4e5 data/v4/train.jsonl 5
 # Args: VERSION DATA EPOCHS. Output: $W/laya-guide-$VERSION.zip (download it from Jupyter's file browser)
 # and $W/results-$VERSION.txt (val + held-out + web scores).
 set -euo pipefail
@@ -9,8 +9,8 @@ VERSION=${1:-v4e5}; DATA=${2:-data/v4/train.jsonl}; EPOCHS=${3:-5}
 BASE=${BASE:-convaiinnovations/laya}; HEAD=${HEAD_MAX_LEN:-192}
 W=${WORKDIR:-/workspace}; mkdir -p "$W"
 cd "$W"
-[ -d app_builders_hack ] || git clone -q https://github.com/EZA2405/app_builders_hack
-cd app_builders_hack && git pull -q && cd ml
+[ -d gabay ] || git clone -q https://github.com/itsalexi/gabay
+cd gabay && git pull -q && cd ml
 pip -q install "laya[serve]"
 if [ "$BASE" = "multilingual" ]; then   # the multilingual checkpoint lives in a subfolder of the Laya repo
   BASE=$(python -c "from huggingface_hub import snapshot_download as s; print(s('convaiinnovations/laya', allow_patterns=['multilingual/*'])+'/multilingual')")

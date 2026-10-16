@@ -16,7 +16,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).parents[2] / "ml"))
-from make_fixtures import is_personal, redact_names  # noqa: E402  (AGENTS.md rule 1: all cloud-bound data goes through these)
+from make_fixtures import is_personal, redact_names  # noqa: E402  (project rule: all cloud-bound data goes through these)
 
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
 # Phones, card and account numbers; ponytail: digit runs only, names of people still pass if not caught by is_personal.

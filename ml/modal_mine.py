@@ -21,7 +21,7 @@ models = modal.Volume.from_name("gabay-models")
 @app.function(gpu=os.environ.get("GABAY_GPU", "H100"), image=image, volumes={"/out": models}, timeout=2 * 60 * 60)
 def mine(model_dir: str, sources: str, out: str, threads: int = 12) -> str:
     script = f"""set -e
-cd /root && git clone -q https://github.com/EZA2405/app_builders_hack && cd app_builders_hack/ml
+cd /root && git clone -q https://github.com/itsalexi/gabay && cd gabay/ml
 LAYA_HOST=127.0.0.1 LAYA_PORT=8766 LAYA_DEVICE=cuda LAYA_MODELS=english \\
 LAYA_EXTRA_MODELS='{{"guide": "/out/models/{model_dir}"}}' nohup laya-serve > /root/serve.log 2>&1 &
 for i in $(seq 1 120); do curl -s -m 2 http://127.0.0.1:8766/health >/dev/null && break; sleep 2; done
